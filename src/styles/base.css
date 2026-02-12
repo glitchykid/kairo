@@ -1,0 +1,120 @@
+html,
+body,
+#app {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  overflow: hidden;
+  background: var(--kairo-bg-0);
+  color: var(--kairo-text);
+  font-family: var(--el-font-family);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+button,
+input,
+textarea,
+select {
+  font-family: var(--el-font-family);
+}
+
+.el-button {
+  border-color: var(--kairo-border);
+}
+
+.el-button:hover {
+  border-color: var(--kairo-bg-3);
+}
+
+.el-card,
+.el-dialog,
+.el-input__wrapper,
+.el-select__wrapper {
+  background-color: var(--el-bg-color-overlay);
+  border-color: var(--kairo-border);
+}
+
+.el-dialog {
+  border: 1px solid var(--kairo-border);
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.42);
+  background: var(--kairo-bg-2) !important;
+}
+
+.el-dialog__title,
+.el-dialog__headerbtn .el-dialog__close {
+  color: var(--kairo-text-strong) !important;
+}
+
+.el-dialog__body,
+.el-dialog__header {
+  color: var(--kairo-text) !important;
+  background: var(--kairo-bg-2) !important;
+}
+
+.el-overlay {
+  background-color: rgba(8, 9, 11, 0.62) !important;
+}
+
+.el-tabs__item {
+  color: var(--kairo-muted);
+}
+
+.el-tabs__item.is-active {
+  color: var(--kairo-text);
+}
+
+.el-tabs__active-bar {
+  background-color: var(--el-color-primary);
+}
+
+.el-popper.is-light,
+.el-select-dropdown {
+  border: 1px solid var(--kairo-border) !important;
+  background: var(--kairo-bg-2) !important;
+  color: var(--kairo-text-strong) !important;
+}
+
+.el-popper {
+  background: var(--kairo-bg-2) !important;
+  border-color: var(--kairo-border) !important;
+}
+
+.el-popper .el-popper__arrow::before {
+  background: var(--kairo-bg-2) !important;
+  border-color: var(--kairo-border) !important;
+}
+
+.el-dropdown-menu {
+  border: 1px solid var(--kairo-border);
+  background: var(--kairo-bg-2) !important;
+}
+
+.el-dropdown-menu__item {
+  color: var(--kairo-text-strong) !important;
+  font-weight: 500;
+}
+
+.el-dropdown-menu__item:not(.is-disabled):focus {
+  background: var(--kairo-bg-3);
+  color: var(--kairo-text-strong) !important;
+}
+
+.el-select-dropdown__item {
+  color: var(--kairo-text-strong) !important;
+}
+
+.el-select-dropdown__item.hover,
+.el-select-dropdown__item:hover {
+  background: var(--kairo-bg-3);
+}
+
+.el-select-dropdown__item.selected {
+  color: var(--kairo-text-strong) !important;
+}

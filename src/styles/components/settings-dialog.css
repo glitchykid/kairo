@@ -1,0 +1,40 @@
+.settings-dialog .el-dialog__header {
+  border-bottom: 1px solid var(--kairo-border);
+  margin-right: 0;
+}
+
+.settings-dialog .el-dialog__body {
+  padding-top: 0.75rem;
+}
+
+.settings-dialog .el-tabs__item {
+  color: var(--kairo-text-strong);
+}
+
+.settings-dialog .el-tabs__item.is-active {
+  color: var(--kairo-text-strong);
+}
+
+.settings-dialog__tabs .el-tabs__nav-wrap::after {
+  background: var(--kairo-border);
+}
+
+.settings-panel h3 {
+  margin: 0 0 0.4rem;
+}
+
+.settings-panel p {
+  margin: 0 0 1rem;
+  color: var(--kairo-muted);
+}
+
+.settings-panel__field {
+  display: grid;
+  gap: 0.4rem;
+  max-width: 320px;
+}
+
+.settings-panel__field label {
+  font-size: 0.86rem;
+  color: var(--kairo-muted);
+}

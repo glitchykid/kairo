@@ -1,0 +1,29 @@
+.app-shell {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  height: 100vh;
+  background: var(--kairo-bg-0);
+  color: var(--kairo-text);
+}
+
+.app-shell__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 0.55rem;
+  border-bottom: 1px solid var(--kairo-border);
+  background: linear-gradient(180deg, #21252b 0%, #1a1e23 100%);
+}
+
+.app-shell__menu,
+.app-shell__toolbar {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+}
+
+.app-shell__content {
+  min-height: 0;
+  overflow: hidden;
+}

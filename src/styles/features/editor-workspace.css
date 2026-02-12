@@ -1,0 +1,8 @@
+.workspace {
+  height: 100%;
+  width: 100%;
+}
+
+.workspace__file-input {
+  display: none;
+}

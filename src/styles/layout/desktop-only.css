@@ -1,0 +1,25 @@
+.desktop-only {
+  display: grid;
+  place-items: center;
+  height: 100vh;
+  padding: 1rem;
+  background: radial-gradient(circle at 20% 20%, #1b1f24 0%, #111316 55%, #0c0d0f 100%);
+}
+
+.desktop-only__card {
+  width: min(560px, 100%);
+  border: 1px solid var(--kairo-border);
+  border-radius: 12px;
+  background: rgba(28, 32, 37, 0.92);
+  padding: 1.2rem;
+}
+
+.desktop-only__card h1 {
+  margin: 0 0 0.5rem;
+  font-size: 1.2rem;
+}
+
+.desktop-only__card p {
+  margin: 0;
+  color: var(--kairo-muted);
+}

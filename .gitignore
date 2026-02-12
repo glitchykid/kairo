@@ -15,14 +15,17 @@ coverage
 *.local
 
 # Editor directories and files
-.vscode/*
-!.vscode/extensions.json
+.vscode
+.cursor
 .idea
 *.suo
 *.ntvs*
 *.njsproj
 *.sln
 *.sw?
+
+# AI developer guide (local only)
+AI_DEVELOPER_GUIDE.md
 
 *.tsbuildinfo
 
