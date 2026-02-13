@@ -9,9 +9,24 @@
 .desktop-only__card {
   width: min(560px, 100%);
   border: 1px solid var(--kairo-border);
-  border-radius: 12px;
+  border-radius: 14px;
   background: rgba(28, 32, 37, 0.92);
-  padding: 1.2rem;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: var(--kairo-shadow-lg);
+  padding: 1.5rem;
+  animation: cardFadeIn 0.4s var(--kairo-ease-out);
+}
+
+@keyframes cardFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
 
 .desktop-only__card h1 {

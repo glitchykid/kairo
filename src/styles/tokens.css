@@ -1,15 +1,32 @@
 @import url('https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700&display=swap');
 
 :root {
+  /* ── Surface palette ─────────────────────────────────────────────── */
   --kairo-bg-0: #131518;
   --kairo-bg-1: #1a1d21;
   --kairo-bg-2: #23272d;
   --kairo-bg-3: #2c3138;
   --kairo-border: #3b424c;
+  --kairo-border-subtle: #2f353d;
   --kairo-text: #e6e9ee;
   --kairo-text-strong: #f3f6fb;
   --kairo-muted: #aab1bc;
+  --kairo-accent: #5b9bd5;
+  --kairo-accent-dim: rgba(91, 155, 213, 0.15);
 
+  /* ── Timing ──────────────────────────────────────────────────────── */
+  --kairo-ease: cubic-bezier(0.25, 0.1, 0.25, 1);
+  --kairo-ease-out: cubic-bezier(0, 0, 0.2, 1);
+  --kairo-duration-fast: 0.15s;
+  --kairo-duration: 0.2s;
+  --kairo-duration-slow: 0.35s;
+
+  /* ── Shadows ─────────────────────────────────────────────────────── */
+  --kairo-shadow-sm: 0 1px 4px rgba(0, 0, 0, 0.25);
+  --kairo-shadow-md: 0 4px 16px rgba(0, 0, 0, 0.3);
+  --kairo-shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.4);
+
+  /* ── Element Plus overrides ──────────────────────────────────────── */
   --el-color-primary: #707882;
   --el-color-primary-light-3: #8a919a;
   --el-color-primary-light-5: #9ca3ab;

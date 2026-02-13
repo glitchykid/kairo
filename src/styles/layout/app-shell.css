@@ -13,7 +13,10 @@
   min-height: 44px;
   padding: 0 0.55rem;
   border-bottom: 1px solid var(--kairo-border);
-  background: linear-gradient(180deg, #21252b 0%, #1a1e23 100%);
+  background: linear-gradient(180deg, #252a31 0%, #1c2026 100%);
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.35);
+  position: relative;
+  z-index: 20;
 }
 
 .app-shell__menu,

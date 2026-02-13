@@ -12,6 +12,12 @@ describe('imported-model utilities', () => {
     expect(detectModelFormat('unknown.txt')).toBeUndefined()
   })
 
+  it('returns undefined for missing or invalid extensions', () => {
+    expect(detectModelFormat('')).toBeUndefined()
+    expect(detectModelFormat('noextension')).toBeUndefined()
+    expect(detectModelFormat('.hidden')).toBeUndefined()
+  })
+
   it('builds an accept string containing all formats', () => {
     const accept = buildModelAcceptString()
     for (const format of SUPPORTED_MODEL_FORMATS) {

@@ -17,30 +17,52 @@ const plyLoader = new PLYLoader()
 const colladaLoader = new ColladaLoader()
 const threeMfLoader = new ThreeMFLoader()
 
+function toFlatMaterial(obj: THREE.Object3D): void {
+  if (!obj || typeof obj.traverse !== 'function') return
+  obj.traverse((child) => {
+    if (child instanceof THREE.Mesh && child.material) {
+      const oldMat = Array.isArray(child.material) ? child.material[0] : child.material
+      const color = oldMat && 'color' in oldMat && oldMat.color instanceof THREE.Color
+        ? (oldMat.color as THREE.Color).getHex()
+        : 0xa1a8b2
+      const mat = new THREE.MeshBasicMaterial({ color })
+      child.material = mat
+      if (Array.isArray(oldMat)) oldMat.forEach((m) => m.dispose())
+      else oldMat?.dispose?.()
+    }
+  })
+}
+
 function makeGeometryMesh(geometry: THREE.BufferGeometry): THREE.Mesh {
   geometry.computeBoundingSphere()
   geometry.computeVertexNormals()
   return new THREE.Mesh(
     geometry,
-    new THREE.MeshStandardMaterial({
+    new THREE.MeshBasicMaterial({
       color: 0xa1a8b2,
-      roughness: 0.52,
-      metalness: 0.12,
     }),
   )
 }
 
 export async function loadImportedModelObject(asset: ImportedModelAsset): Promise<THREE.Object3D> {
+  try {
   switch (asset.format) {
     case 'glb':
     case 'gltf': {
       const gltf = await gltfLoader.loadAsync(asset.url)
+      toFlatMaterial(gltf.scene)
       return gltf.scene
     }
-    case 'obj':
-      return objLoader.loadAsync(asset.url)
-    case 'fbx':
-      return fbxLoader.loadAsync(asset.url)
+    case 'obj': {
+      const obj = await objLoader.loadAsync(asset.url)
+      toFlatMaterial(obj)
+      return obj
+    }
+    case 'fbx': {
+      const fbx = await fbxLoader.loadAsync(asset.url)
+      toFlatMaterial(fbx)
+      return fbx
+    }
     case 'stl': {
       const geometry = await stlLoader.loadAsync(asset.url)
       return makeGeometryMesh(geometry)
@@ -51,6 +73,7 @@ export async function loadImportedModelObject(asset: ImportedModelAsset): Promis
     }
     case 'dae': {
       const collada = await colladaLoader.loadAsync(asset.url)
+      toFlatMaterial(collada.scene)
       return collada.scene
     }
     case '3mf':
@@ -59,5 +82,8 @@ export async function loadImportedModelObject(asset: ImportedModelAsset): Promis
       const usdzLoader = new USDZLoader()
       return usdzLoader.loadAsync(asset.url)
     }
+  }
+  } catch (err) {
+    throw err
   }
 }

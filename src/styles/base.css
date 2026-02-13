@@ -10,6 +10,9 @@ body {
   background: var(--kairo-bg-0);
   color: var(--kairo-text);
   font-family: var(--el-font-family);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
 *,

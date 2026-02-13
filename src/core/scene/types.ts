@@ -1,4 +1,4 @@
-export type PrimitiveType = 'box'
+export type PrimitiveType = 'box' | 'sphere' | 'cylinder' | 'cone' | 'torus' | 'plane'
 
 export interface Transform {
   x: number
@@ -11,7 +11,17 @@ export interface SceneNode {
   type: 'mesh'
   primitive: PrimitiveType
   position: Transform
+  scale?: Transform
+  rotation?: Transform
 }
+
+export interface LightNode {
+  id: string
+  type: 'light'
+  position: Transform
+}
+
+export type SceneNodeOrLight = SceneNode | LightNode
 
 export interface SceneEntity {
   id: string
@@ -19,6 +29,7 @@ export interface SceneEntity {
   createdAt: number
   updatedAt: number
   nodes: SceneNode[]
+  lights: LightNode[]
 }
 
 export interface SceneRepository {

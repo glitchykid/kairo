@@ -10,6 +10,6 @@ describe('hotkeys registry', () => {
   it('documents reset and vertical movement shortcuts', () => {
     expect(HOTKEYS.find((h) => h.id === 'viewport_reset_shift_c')?.keys).toBe('Shift + C')
     expect(HOTKEYS.find((h) => h.id === 'viewport_move_up')?.keys).toBe('Space')
-    expect(HOTKEYS.find((h) => h.id === 'viewport_move_down')?.keys).toBe('Ctrl')
+    expect(HOTKEYS.find((h) => h.id === 'viewport_move_down')?.keys).toBe('Shift')
   })
 })

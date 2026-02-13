@@ -18,8 +18,11 @@
   padding: 0;
   cursor: col-resize;
   background: linear-gradient(180deg, #2c3138 0%, #373d45 100%);
+  transition: background var(--kairo-duration) var(--kairo-ease),
+              box-shadow var(--kairo-duration) var(--kairo-ease);
 }
 
 .resizable-panels__divider:hover {
-  background: #4a515b;
+  background: var(--kairo-accent);
+  box-shadow: 0 0 8px rgba(91, 155, 213, 0.25);
 }

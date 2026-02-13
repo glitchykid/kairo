@@ -1,7 +1,18 @@
 import { ref, toRaw } from 'vue'
 import { defineStore } from 'pinia'
-import type { SceneEntity } from '@/core/scene/types'
-import { createScene, addCube, deleteNode, updateNodePosition } from '@/features/scene/use-cases/scene-editor'
+import type { PrimitiveType, SceneEntity } from '@/core/scene/types'
+import {
+  createScene,
+  addPrimitive,
+  deleteNode,
+  updateNodePosition,
+  updateNodeScale,
+  updateNodeRotation,
+  addLight,
+  deleteLight,
+  updateLightPosition,
+  renameScene,
+} from '@/features/scene/use-cases/scene-editor'
 import {
   detectModelFormat,
   type ImportedModelAsset,
@@ -22,7 +33,7 @@ export const useEditorStore = defineStore('editor', () => {
   const trackedObjectUrls = ref<string[]>([])
 
   function makeSceneSnapshot(): SceneEntity {
-    return structuredClone(toRaw(activeScene.value))
+    return JSON.parse(JSON.stringify(toRaw(activeScene.value)))
   }
 
   function createAssetId(): string {
@@ -49,7 +60,10 @@ export const useEditorStore = defineStore('editor', () => {
     isHydrating.value = true
     const storedScene = await sceneRepository.getById(activeScene.value.id)
     if (storedScene) {
-      activeScene.value = storedScene
+      activeScene.value = {
+        ...storedScene,
+        lights: storedScene.lights ?? [],
+      }
     } else {
       await sceneRepository.save(makeSceneSnapshot())
     }
@@ -60,8 +74,18 @@ export const useEditorStore = defineStore('editor', () => {
     isHydrating.value = false
   }
 
+  async function addPrimitiveNode(type: PrimitiveType = 'box'): Promise<void> {
+    activeScene.value = addPrimitive(activeScene.value, type)
+    await sceneRepository.save(makeSceneSnapshot())
+  }
+
+  /** @deprecated Use addPrimitiveNode('box') instead. */
   async function addCubeNode(): Promise<void> {
-    activeScene.value = addCube(activeScene.value)
+    return addPrimitiveNode('box')
+  }
+
+  async function addLightNode(): Promise<void> {
+    activeScene.value = addLight(activeScene.value)
     await sceneRepository.save(makeSceneSnapshot())
   }
 
@@ -92,6 +116,19 @@ export const useEditorStore = defineStore('editor', () => {
     await sceneRepository.save(makeSceneSnapshot())
   }
 
+  async function deleteLightById(lightId: string): Promise<void> {
+    activeScene.value = deleteLight(activeScene.value, lightId)
+    await sceneRepository.save(makeSceneSnapshot())
+  }
+
+  async function updateLightPositionById(
+    lightId: string,
+    position: { x: number; y: number; z: number },
+  ): Promise<void> {
+    activeScene.value = updateLightPosition(activeScene.value, lightId, position)
+    await sceneRepository.save(makeSceneSnapshot())
+  }
+
   async function deleteImportedModel(assetId: string): Promise<void> {
     const asset = importedAssets.value.find((a) => a.id === assetId)
     if (asset) {
@@ -107,15 +144,37 @@ export const useEditorStore = defineStore('editor', () => {
     await sceneRepository.save(makeSceneSnapshot())
   }
 
+  async function updateNodeScaleById(nodeId: string, scale: { x: number; y: number; z: number }): Promise<void> {
+    activeScene.value = updateNodeScale(activeScene.value, nodeId, scale)
+    await sceneRepository.save(makeSceneSnapshot())
+  }
+
+  async function updateNodeRotationById(nodeId: string, rotation: { x: number; y: number; z: number }): Promise<void> {
+    activeScene.value = updateNodeRotation(activeScene.value, nodeId, rotation)
+    await sceneRepository.save(makeSceneSnapshot())
+  }
+
+  async function renameActiveScene(name: string): Promise<void> {
+    activeScene.value = renameScene(activeScene.value, name)
+    await sceneRepository.save(makeSceneSnapshot())
+  }
+
   return {
     activeScene,
     importedAssets,
     isHydrating,
     hydrate,
     addCubeNode,
+    addPrimitiveNode,
+    addLightNode,
     importModelFiles,
     deleteNodeById,
+    deleteLightById,
     deleteImportedModel,
     updateNodePositionById,
+    updateNodeScaleById,
+    updateNodeRotationById,
+    updateLightPositionById,
+    renameActiveScene,
   }
 })

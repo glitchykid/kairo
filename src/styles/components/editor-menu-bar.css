@@ -16,17 +16,22 @@
   font-size: 0.875rem;
   font-weight: 500;
   cursor: pointer;
-  transition: all 0.15s ease;
+  transition:
+    all var(--kairo-duration-fast) var(--kairo-ease),
+    transform var(--kairo-duration-fast) var(--kairo-ease);
 }
 
 .editor-menu-bar__trigger:hover {
   background: var(--kairo-bg-3);
   border-color: var(--kairo-border);
-  color: var(--kairo-text);
+  color: var(--kairo-text-strong);
+  transform: translateY(-1px);
+  box-shadow: var(--kairo-shadow-sm);
 }
 
 .editor-menu-bar__trigger:active {
   background: var(--kairo-bg-1);
+  transform: translateY(0);
 }
 
 .editor-menu-bar__dropdown.el-popper {

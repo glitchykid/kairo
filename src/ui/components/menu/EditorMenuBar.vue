@@ -4,24 +4,9 @@ import { HOTKEYS } from '@/features/editor/hotkeys/hotkeys-registry'
 import SettingsDialog from '@/ui/components/settings/SettingsDialog.vue'
 import { useI18n } from '@/localization/i18n'
 
-const emit = defineEmits<{
-  (event: 'add-cube'): void
-  (event: 'import-model'): void
-}>()
-
 const { t } = useI18n()
 const isHotkeysDialogOpen = ref(false)
 const isSettingsDialogOpen = ref(false)
-
-function handleAddObjectCommand(command: string): void {
-  if (command === 'add-cube') {
-    emit('add-cube')
-    return
-  }
-  if (command === 'import-model') {
-    emit('import-model')
-  }
-}
 
 function openSettingsPane(command: string): void {
   if (command !== 'user-interface') return
@@ -35,16 +20,6 @@ function contextLabel(context: 'viewport' | 'global'): string {
 
 <template>
   <nav class="editor-menu-bar" aria-label="Editor main menu">
-    <el-dropdown trigger="click" popper-class="editor-menu-bar__dropdown" @command="handleAddObjectCommand">
-      <button class="editor-menu-bar__trigger" type="button">{{ t('menu.addObject') }}</button>
-      <template #dropdown>
-        <el-dropdown-menu>
-          <el-dropdown-item command="add-cube">{{ t('menu.cube') }}</el-dropdown-item>
-          <el-dropdown-item command="import-model">{{ t('menu.importModel') }}</el-dropdown-item>
-        </el-dropdown-menu>
-      </template>
-    </el-dropdown>
-
     <button class="editor-menu-bar__trigger" type="button" @click="isHotkeysDialogOpen = true">
       {{ t('menu.hotkeys') }}
     </button>

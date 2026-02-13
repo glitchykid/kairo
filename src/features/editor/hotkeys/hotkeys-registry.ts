@@ -44,7 +44,7 @@ export const HOTKEYS: HotkeyDefinition[] = [
   },
   {
     id: 'viewport_move_down',
-    keys: 'Ctrl',
+    keys: 'Shift',
     descriptionKey: 'hotkeys.moveDown',
     context: 'viewport',
   },
@@ -52,6 +52,24 @@ export const HOTKEYS: HotkeyDefinition[] = [
     id: 'viewport_reset_shift_c',
     keys: 'Shift + C',
     descriptionKey: 'hotkeys.resetShiftC',
+    context: 'viewport',
+  },
+  {
+    id: 'viewport_translate_mode',
+    keys: '1',
+    descriptionKey: 'hotkeys.translateMode',
+    context: 'viewport',
+  },
+  {
+    id: 'viewport_rotate_mode',
+    keys: '2',
+    descriptionKey: 'hotkeys.rotateMode',
+    context: 'viewport',
+  },
+  {
+    id: 'viewport_scale_mode',
+    keys: '3',
+    descriptionKey: 'hotkeys.scaleMode',
     context: 'viewport',
   },
   {
