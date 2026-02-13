@@ -108,12 +108,42 @@ export function makeBoxGeometry(): THREE.BufferGeometry {
   const indices: number[] = []
   let idx = 0
   const faces: [number, number, number][][] = [
-    [[-s, -s, s], [s, -s, s], [s, s, s], [-s, s, s]],
-    [[s, -s, -s], [-s, -s, -s], [-s, s, -s], [s, s, -s]],
-    [[-s, s, -s], [-s, -s, -s], [-s, -s, s], [-s, s, s]],
-    [[s, -s, s], [s, -s, -s], [s, s, -s], [s, s, s]],
-    [[-s, -s, -s], [s, -s, -s], [s, -s, s], [-s, -s, s]],
-    [[-s, s, s], [s, s, s], [s, s, -s], [-s, s, -s]],
+    [
+      [-s, -s, s],
+      [s, -s, s],
+      [s, s, s],
+      [-s, s, s],
+    ],
+    [
+      [s, -s, -s],
+      [-s, -s, -s],
+      [-s, s, -s],
+      [s, s, -s],
+    ],
+    [
+      [-s, s, -s],
+      [-s, -s, -s],
+      [-s, -s, s],
+      [-s, s, s],
+    ],
+    [
+      [s, -s, s],
+      [s, -s, -s],
+      [s, s, -s],
+      [s, s, s],
+    ],
+    [
+      [-s, -s, -s],
+      [s, -s, -s],
+      [s, -s, s],
+      [-s, -s, s],
+    ],
+    [
+      [-s, s, s],
+      [s, s, s],
+      [s, s, -s],
+      [-s, s, -s],
+    ],
   ]
   for (const face of faces) {
     const i0 = idx++
@@ -138,13 +168,20 @@ export function makeBoxGeometry(): THREE.BufferGeometry {
  */
 export function getPrimitiveYOffset(type: PrimitiveType): number {
   switch (type) {
-    case 'box': return 0.5
-    case 'sphere': return 0.5
-    case 'cylinder': return 0.5
-    case 'cone': return 0.5
-    case 'torus': return 0.15
-    case 'plane': return 0
-    default: return 0.5
+    case 'box':
+      return 0.5
+    case 'sphere':
+      return 0.5
+    case 'cylinder':
+      return 0.5
+    case 'cone':
+      return 0.5
+    case 'torus':
+      return 0.15
+    case 'plane':
+      return 0
+    default:
+      return 0.5
   }
 }
 

@@ -139,17 +139,26 @@ export const useEditorStore = defineStore('editor', () => {
     await modelAssetRepository.deleteById(assetId)
   }
 
-  async function updateNodePositionById(nodeId: string, position: { x: number; y: number; z: number }): Promise<void> {
+  async function updateNodePositionById(
+    nodeId: string,
+    position: { x: number; y: number; z: number },
+  ): Promise<void> {
     activeScene.value = updateNodePosition(activeScene.value, nodeId, position)
     await sceneRepository.save(makeSceneSnapshot())
   }
 
-  async function updateNodeScaleById(nodeId: string, scale: { x: number; y: number; z: number }): Promise<void> {
+  async function updateNodeScaleById(
+    nodeId: string,
+    scale: { x: number; y: number; z: number },
+  ): Promise<void> {
     activeScene.value = updateNodeScale(activeScene.value, nodeId, scale)
     await sceneRepository.save(makeSceneSnapshot())
   }
 
-  async function updateNodeRotationById(nodeId: string, rotation: { x: number; y: number; z: number }): Promise<void> {
+  async function updateNodeRotationById(
+    nodeId: string,
+    rotation: { x: number; y: number; z: number },
+  ): Promise<void> {
     activeScene.value = updateNodeRotation(activeScene.value, nodeId, rotation)
     await sceneRepository.save(makeSceneSnapshot())
   }

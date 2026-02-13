@@ -1,4 +1,10 @@
-import type { SceneEntity, SceneNode, LightNode, Transform, PrimitiveType } from '@/core/scene/types'
+import type {
+  SceneEntity,
+  SceneNode,
+  LightNode,
+  Transform,
+  PrimitiveType,
+} from '@/core/scene/types'
 
 const defaultSceneName = 'Untitled Scene'
 
@@ -61,23 +67,15 @@ export function updateNodePosition(
   return {
     ...scene,
     updatedAt: Date.now(),
-    nodes: scene.nodes.map((node) =>
-      node.id === nodeId ? { ...node, position } : node,
-    ),
+    nodes: scene.nodes.map((node) => (node.id === nodeId ? { ...node, position } : node)),
   }
 }
 
-export function updateNodeScale(
-  scene: SceneEntity,
-  nodeId: string,
-  scale: Transform,
-): SceneEntity {
+export function updateNodeScale(scene: SceneEntity, nodeId: string, scale: Transform): SceneEntity {
   return {
     ...scene,
     updatedAt: Date.now(),
-    nodes: scene.nodes.map((node) =>
-      node.id === nodeId ? { ...node, scale } : node,
-    ),
+    nodes: scene.nodes.map((node) => (node.id === nodeId ? { ...node, scale } : node)),
   }
 }
 
@@ -89,9 +87,7 @@ export function updateNodeRotation(
   return {
     ...scene,
     updatedAt: Date.now(),
-    nodes: scene.nodes.map((node) =>
-      node.id === nodeId ? { ...node, rotation } : node,
-    ),
+    nodes: scene.nodes.map((node) => (node.id === nodeId ? { ...node, rotation } : node)),
   }
 }
 

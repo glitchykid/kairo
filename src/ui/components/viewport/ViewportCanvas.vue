@@ -53,13 +53,37 @@ const emit = defineEmits<{
   (event: 'request-add-light'): void
   (event: 'request-import-model'): void
   (event: 'select-object', objectId: string | null, isPrimitive: boolean, isLight?: boolean): void
-  (event: 'update-node-position', nodeId: string, position: { x: number; y: number; z: number }): void
+  (
+    event: 'update-node-position',
+    nodeId: string,
+    position: { x: number; y: number; z: number },
+  ): void
   (event: 'update-node-scale', nodeId: string, scale: { x: number; y: number; z: number }): void
-  (event: 'update-node-rotation', nodeId: string, rotation: { x: number; y: number; z: number }): void
-  (event: 'update-light-position', lightId: string, position: { x: number; y: number; z: number }): void
-  (event: 'update-imported-position', assetId: string, position: { x: number; y: number; z: number }): void
-  (event: 'update-imported-scale', assetId: string, scale: { x: number; y: number; z: number }): void
-  (event: 'update-imported-rotation', assetId: string, rotation: { x: number; y: number; z: number }): void
+  (
+    event: 'update-node-rotation',
+    nodeId: string,
+    rotation: { x: number; y: number; z: number },
+  ): void
+  (
+    event: 'update-light-position',
+    lightId: string,
+    position: { x: number; y: number; z: number },
+  ): void
+  (
+    event: 'update-imported-position',
+    assetId: string,
+    position: { x: number; y: number; z: number },
+  ): void
+  (
+    event: 'update-imported-scale',
+    assetId: string,
+    scale: { x: number; y: number; z: number },
+  ): void
+  (
+    event: 'update-imported-rotation',
+    assetId: string,
+    rotation: { x: number; y: number; z: number },
+  ): void
 }>()
 
 const { t } = useI18n()
@@ -83,7 +107,12 @@ const axesCamera = new THREE.PerspectiveCamera(50, 1, 0.1, 100)
 const defaultCameraPosition = new THREE.Vector3(8, 9, 8)
 const upAxis = new THREE.Vector3(0, 1, 0)
 const clock = new THREE.Clock()
-const gridHelper = new THREE.GridHelper(GRID_SIZE, GRID_DIVISIONS, GRID_COLOR_PRIMARY, GRID_COLOR_SECONDARY)
+const gridHelper = new THREE.GridHelper(
+  GRID_SIZE,
+  GRID_DIVISIONS,
+  GRID_COLOR_PRIMARY,
+  GRID_COLOR_SECONDARY,
+)
 const vertexHelpers = new THREE.Group()
 const edgeHelpers = new THREE.Group()
 
@@ -459,7 +488,11 @@ async function syncImportedAssets(): Promise<void> {
         markPolygonCountDirty()
         refreshSceneDisplay()
 
-        if (props.selectedObjectId && !props.selectedIsPrimitive && props.selectedObjectId === asset.id) {
+        if (
+          props.selectedObjectId &&
+          !props.selectedIsPrimitive &&
+          props.selectedObjectId === asset.id
+        ) {
           selectObject(model, asset.id, false, false)
         }
       } catch (error) {
@@ -551,7 +584,7 @@ function switchCameraType(type: 'perspective' | 'orthographic'): void {
        the orbit target so the scene looks the same size after switching. */
     const halfFov = (perspCamera.fov * Math.PI) / 360
     const visibleHalfH = Math.max(distance, 0.1) * Math.tan(halfFov)
-    orthoCamera.zoom = 10 / visibleHalfH   // 10 = base frustum half-height
+    orthoCamera.zoom = 10 / visibleHalfH // 10 = base frustum half-height
     updateOrthoFrustum(canvas.clientWidth, canvas.clientHeight)
     camera = orthoCamera
   } else {
@@ -733,9 +766,17 @@ function emitTransformChange(): void {
     const yOffset = node ? getPrimitiveYOffset(node.primitive) : 0.5
 
     if (mode === 'translate') {
-      emit('update-node-position', id, { x: obj.position.x, y: obj.position.y - yOffset, z: obj.position.z })
+      emit('update-node-position', id, {
+        x: obj.position.x,
+        y: obj.position.y - yOffset,
+        z: obj.position.z,
+      })
     } else if (mode === 'rotate') {
-      emit('update-node-rotation', id, { x: obj.rotation.x * RAD2DEG, y: obj.rotation.y * RAD2DEG, z: obj.rotation.z * RAD2DEG })
+      emit('update-node-rotation', id, {
+        x: obj.rotation.x * RAD2DEG,
+        y: obj.rotation.y * RAD2DEG,
+        z: obj.rotation.z * RAD2DEG,
+      })
     } else if (mode === 'scale') {
       emit('update-node-scale', id, { x: obj.scale.x, y: obj.scale.y, z: obj.scale.z })
     }
@@ -747,9 +788,17 @@ function emitTransformChange(): void {
   } else {
     /* Imported model — emit whichever transform axis changed. */
     if (mode === 'translate') {
-      emit('update-imported-position', id, { x: obj.position.x, y: obj.position.y, z: obj.position.z })
+      emit('update-imported-position', id, {
+        x: obj.position.x,
+        y: obj.position.y,
+        z: obj.position.z,
+      })
     } else if (mode === 'rotate') {
-      emit('update-imported-rotation', id, { x: obj.rotation.x * RAD2DEG, y: obj.rotation.y * RAD2DEG, z: obj.rotation.z * RAD2DEG })
+      emit('update-imported-rotation', id, {
+        x: obj.rotation.x * RAD2DEG,
+        y: obj.rotation.y * RAD2DEG,
+        z: obj.rotation.z * RAD2DEG,
+      })
     } else if (mode === 'scale') {
       emit('update-imported-scale', id, { x: obj.scale.x, y: obj.scale.y, z: obj.scale.z })
     }
@@ -795,7 +844,11 @@ onMounted(() => {
   canvasHost.value.appendChild(renderer.domElement)
 
   try {
-    axesRenderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, powerPreference: 'high-performance' })
+    axesRenderer = new THREE.WebGLRenderer({
+      antialias: true,
+      alpha: true,
+      powerPreference: 'high-performance',
+    })
   } catch {
     renderer.dispose()
     renderer = null
@@ -815,7 +868,11 @@ onMounted(() => {
   controls.panSpeed = 0.85
   controls.enableZoom = false
   controls.target.set(0, 0, 0)
-  controls.mouseButtons = { LEFT: THREE.MOUSE.ROTATE, MIDDLE: THREE.MOUSE.ROTATE, RIGHT: THREE.MOUSE.PAN }
+  controls.mouseButtons = {
+    LEFT: THREE.MOUSE.ROTATE,
+    MIDDLE: THREE.MOUSE.ROTATE,
+    RIGHT: THREE.MOUSE.PAN,
+  }
   controls.touches = { ONE: THREE.TOUCH.ROTATE, TWO: THREE.TOUCH.DOLLY_PAN }
   controls.update()
 
@@ -925,11 +982,7 @@ onMounted(() => {
       return
     }
 
-    if (
-      event.code.startsWith('Key') ||
-      event.code.startsWith('Shift') ||
-      event.code === 'Space'
-    ) {
+    if (event.code.startsWith('Key') || event.code.startsWith('Shift') || event.code === 'Space') {
       keyState.add(event.code)
     }
   }
@@ -949,7 +1002,10 @@ onMounted(() => {
     if (!isViewportActive()) return
     event.preventDefault()
     const delta = event.deltaY > 0 ? -CAMERA_SPEED_STEP : CAMERA_SPEED_STEP
-    cameraMovementSpeed.value = Math.max(CAMERA_SPEED_MIN, Math.min(CAMERA_SPEED_MAX, cameraMovementSpeed.value + delta))
+    cameraMovementSpeed.value = Math.max(
+      CAMERA_SPEED_MIN,
+      Math.min(CAMERA_SPEED_MAX, cameraMovementSpeed.value + delta),
+    )
   }
 
   /* ── Attach listeners ────────────────────────────────────────────── */
@@ -977,7 +1033,11 @@ onMounted(() => {
 
 watch(() => props.sceneData.nodes, syncPrimitiveNodes, { deep: true })
 watch(() => props.sceneData.lights, syncLights, { deep: true })
-watch(() => props.importedAssets, () => void syncImportedAssets(), { deep: true })
+watch(
+  () => props.importedAssets,
+  () => void syncImportedAssets(),
+  { deep: true },
+)
 
 watch(displayMode, () => {
   if (displayMode.value === 'wireframe') {
@@ -991,7 +1051,9 @@ watch(displayMode, () => {
 })
 
 watch(cameraType, (type) => switchCameraType(type))
-watch(showGrid, () => { gridHelper.visible = showGrid.value })
+watch(showGrid, () => {
+  gridHelper.visible = showGrid.value
+})
 watch(showVertices, updateVerticesDisplay)
 watch(showPolygonEdges, updatePolygonEdgesDisplay)
 
@@ -1021,8 +1083,10 @@ watch(
 /* ═══════════════════════════════════════════════════════════════════════ */
 
 function removeEventHandlers(): void {
-  if (renderer && pointerDownHandler) renderer.domElement.removeEventListener('pointerdown', pointerDownHandler)
-  if (renderer && pointerMoveHandler) renderer.domElement.removeEventListener('pointermove', pointerMoveHandler)
+  if (renderer && pointerDownHandler)
+    renderer.domElement.removeEventListener('pointerdown', pointerDownHandler)
+  if (renderer && pointerMoveHandler)
+    renderer.domElement.removeEventListener('pointermove', pointerMoveHandler)
   if (pointerUpHandler) window.removeEventListener('pointerup', pointerUpHandler)
   if (keyDownHandler) window.removeEventListener('keydown', keyDownHandler)
   if (keyUpHandler) window.removeEventListener('keyup', keyUpHandler)
@@ -1111,7 +1175,10 @@ function getImportedObjectScale(assetId: string): { x: number; y: number; z: num
   return { x: obj.scale.x, y: obj.scale.y, z: obj.scale.z }
 }
 
-function rotateImportedObject(assetId: string, rotation: { x: number; y: number; z: number }): void {
+function rotateImportedObject(
+  assetId: string,
+  rotation: { x: number; y: number; z: number },
+): void {
   const obj = importedObjects.get(assetId)
   if (obj) obj.rotation.set(rotation.x * DEG2RAD, rotation.y * DEG2RAD, rotation.z * DEG2RAD)
 }
@@ -1133,12 +1200,7 @@ defineExpose({
 </script>
 
 <template>
-  <section
-    ref="viewportRoot"
-    class="viewport"
-    tabindex="0"
-    @contextmenu="showContextMenuAt"
-  >
+  <section ref="viewportRoot" class="viewport" tabindex="0" @contextmenu="showContextMenuAt">
     <div ref="canvasHost" class="viewport__canvas" />
 
     <ViewportToolbar

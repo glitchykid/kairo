@@ -13,7 +13,9 @@ function makeMeshMap(): Map<string, THREE.Mesh> {
 function makeImportedMap(): Map<string, THREE.Object3D> {
   const map = new Map<string, THREE.Object3D>()
   const group = new THREE.Group()
-  group.add(new THREE.Mesh(new THREE.BoxGeometry(), new THREE.MeshBasicMaterial({ color: 0xa1a8b2 })))
+  group.add(
+    new THREE.Mesh(new THREE.BoxGeometry(), new THREE.MeshBasicMaterial({ color: 0xa1a8b2 })),
+  )
   map.set('import-1', group)
   return map
 }
@@ -115,8 +117,12 @@ describe('viewport-lighting', () => {
       const emptyImported = new Map<string, THREE.Object3D>()
       const lightsGroup = new THREE.Group()
 
-      expect(() => applyMaterialsForLighting(true, emptyPrims, emptyImported, lightsGroup)).not.toThrow()
-      expect(() => applyMaterialsForLighting(false, emptyPrims, emptyImported, lightsGroup)).not.toThrow()
+      expect(() =>
+        applyMaterialsForLighting(true, emptyPrims, emptyImported, lightsGroup),
+      ).not.toThrow()
+      expect(() =>
+        applyMaterialsForLighting(false, emptyPrims, emptyImported, lightsGroup),
+      ).not.toThrow()
     })
   })
 })

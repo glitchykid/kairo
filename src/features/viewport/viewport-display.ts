@@ -136,7 +136,10 @@ function addEdgeLinesForMesh(
   try {
     const edgesGeom = new THREE.EdgesGeometry(mesh.geometry, thresholdAngle)
     const posAttr = edgesGeom.getAttribute('position') as THREE.BufferAttribute | null
-    if (!posAttr) { edgesGeom.dispose(); return }
+    if (!posAttr) {
+      edgesGeom.dispose()
+      return
+    }
 
     const lineGeom = new LineSegmentsGeometry()
     lineGeom.setPositions(posAttr.array as Float32Array)
@@ -202,7 +205,8 @@ export function updatePolygonEdgesDisplay(
 
   if (showAll) {
     primitiveMeshes.forEach((mesh) =>
-      addEdgeLinesForMesh(mesh, edgeHelpers, edgeMaterial, false, EDGE_THRESHOLD_ANGLE))
+      addEdgeLinesForMesh(mesh, edgeHelpers, edgeMaterial, false, EDGE_THRESHOLD_ANGLE),
+    )
     importedObjects.forEach((object) => {
       object.traverse((child) => {
         if (child instanceof THREE.Mesh)

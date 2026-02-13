@@ -1,6 +1,10 @@
 import { describe, expect, it } from 'vitest'
 import * as THREE from 'three'
-import { applyDisplayMode, updatePolygonEdgesDisplay, updateVerticesDisplay } from '@/features/viewport'
+import {
+  applyDisplayMode,
+  updatePolygonEdgesDisplay,
+  updateVerticesDisplay,
+} from '@/features/viewport'
 
 const resolution = new THREE.Vector2(800, 600)
 
@@ -163,7 +167,17 @@ describe('viewport-display', () => {
       const meshes = makeMeshMap(2)
       const imported = makeImportedMap()
 
-      updatePolygonEdgesDisplay('solid', true, null, false, false, meshes, imported, edgeHelpers, resolution)
+      updatePolygonEdgesDisplay(
+        'solid',
+        true,
+        null,
+        false,
+        false,
+        meshes,
+        imported,
+        edgeHelpers,
+        resolution,
+      )
       expect(edgeHelpers.children.length).toBeGreaterThan(0)
     })
 
@@ -172,10 +186,30 @@ describe('viewport-display', () => {
       const meshes = makeMeshMap(2)
       const imported = makeImportedMap()
 
-      updatePolygonEdgesDisplay('solid', true, null, false, false, meshes, imported, edgeHelpers, resolution)
+      updatePolygonEdgesDisplay(
+        'solid',
+        true,
+        null,
+        false,
+        false,
+        meshes,
+        imported,
+        edgeHelpers,
+        resolution,
+      )
       expect(edgeHelpers.children.length).toBeGreaterThan(0)
 
-      updatePolygonEdgesDisplay('solid', false, null, false, false, meshes, imported, edgeHelpers, resolution)
+      updatePolygonEdgesDisplay(
+        'solid',
+        false,
+        null,
+        false,
+        false,
+        meshes,
+        imported,
+        edgeHelpers,
+        resolution,
+      )
       expect(edgeHelpers.children.length).toBe(0)
     })
 
@@ -184,7 +218,17 @@ describe('viewport-display', () => {
       const meshes = makeMeshMap(3)
       const imported = makeImportedMap()
 
-      updatePolygonEdgesDisplay('solid', true, 'mesh-1', true, false, meshes, imported, edgeHelpers, resolution)
+      updatePolygonEdgesDisplay(
+        'solid',
+        true,
+        'mesh-1',
+        true,
+        false,
+        meshes,
+        imported,
+        edgeHelpers,
+        resolution,
+      )
       expect(edgeHelpers.children.length).toBe(1)
     })
 
@@ -193,7 +237,17 @@ describe('viewport-display', () => {
       const meshes = makeMeshMap(2)
       const imported = makeImportedMap(2)
 
-      updatePolygonEdgesDisplay('solid', true, 'imported-0', false, false, meshes, imported, edgeHelpers, resolution)
+      updatePolygonEdgesDisplay(
+        'solid',
+        true,
+        'imported-0',
+        false,
+        false,
+        meshes,
+        imported,
+        edgeHelpers,
+        resolution,
+      )
       expect(edgeHelpers.children.length).toBeGreaterThan(0)
     })
 
@@ -202,7 +256,17 @@ describe('viewport-display', () => {
       const meshes = makeMeshMap(1)
       const imported = makeImportedMap()
 
-      updatePolygonEdgesDisplay('solid', true, 'light-1', false, true, meshes, imported, edgeHelpers, resolution)
+      updatePolygonEdgesDisplay(
+        'solid',
+        true,
+        'light-1',
+        false,
+        true,
+        meshes,
+        imported,
+        edgeHelpers,
+        resolution,
+      )
       // isLight = true means no selection target, so show all edges
       expect(edgeHelpers.children.length).toBeGreaterThan(0)
     })
@@ -213,7 +277,17 @@ describe('viewport-display', () => {
       const imported = makeImportedMap(1)
 
       // showPolygonEdges=false but wireframe mode forces edges on
-      updatePolygonEdgesDisplay('wireframe', false, null, false, false, meshes, imported, edgeHelpers, resolution)
+      updatePolygonEdgesDisplay(
+        'wireframe',
+        false,
+        null,
+        false,
+        false,
+        meshes,
+        imported,
+        edgeHelpers,
+        resolution,
+      )
       // 2 primitive meshes + 1 imported child mesh = at least 3 line objects
       expect(edgeHelpers.children.length).toBeGreaterThanOrEqual(3)
     })
@@ -223,7 +297,17 @@ describe('viewport-display', () => {
       const meshes = makeMeshMap(2)
       const imported = makeImportedMap(1)
 
-      updatePolygonEdgesDisplay('wireframe', false, 'mesh-0', true, false, meshes, imported, edgeHelpers, resolution)
+      updatePolygonEdgesDisplay(
+        'wireframe',
+        false,
+        'mesh-0',
+        true,
+        false,
+        meshes,
+        imported,
+        edgeHelpers,
+        resolution,
+      )
       // wireframe overrides selection filter — all objects get edges
       expect(edgeHelpers.children.length).toBeGreaterThanOrEqual(3)
     })

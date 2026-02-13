@@ -31,18 +31,18 @@ Kairo is a lightweight, browser-based 3D editor for composing scenes from primit
 
 ### Tech Stack
 
-| Layer | Technology |
-|---|---|
-| Framework | Vue 3 (Composition API, `<script setup>`) |
-| 3D Engine | Three.js |
-| State | Pinia |
-| Storage | IndexedDB (Dexie) |
-| UI Components | Element Plus |
-| Language | TypeScript |
-| Build | Vite |
-| Tests | Vitest + jsdom |
-| Linting | ESLint + oxlint |
-| Formatting | Prettier |
+| Layer         | Technology                                |
+| ------------- | ----------------------------------------- |
+| Framework     | Vue 3 (Composition API, `<script setup>`) |
+| 3D Engine     | Three.js                                  |
+| State         | Pinia                                     |
+| Storage       | IndexedDB (Dexie)                         |
+| UI Components | Element Plus                              |
+| Language      | TypeScript                                |
+| Build         | Vite                                      |
+| Tests         | Vitest + jsdom                            |
+| Linting       | ESLint + oxlint                           |
+| Formatting    | Prettier                                  |
 
 ### Requirements
 
@@ -98,18 +98,18 @@ src/
 
 ### Hotkeys
 
-| Key | Action |
-|---|---|
-| W / A / S / D | Camera flight (relative to view direction) |
-| Space | Ascend |
-| Shift | Descend |
-| Scroll wheel | Adjust camera speed |
-| 1 | Translate mode |
-| 2 | Rotate mode |
-| 3 | Scale mode |
-| Right-click | Context menu (add primitives, lights, import) |
-| Left-click | Select object |
-| Middle-click | Orbit / Pan (+ Shift) |
+| Key           | Action                                        |
+| ------------- | --------------------------------------------- |
+| W / A / S / D | Camera flight (relative to view direction)    |
+| Space         | Ascend                                        |
+| Shift         | Descend                                       |
+| Scroll wheel  | Adjust camera speed                           |
+| 1             | Translate mode                                |
+| 2             | Rotate mode                                   |
+| 3             | Scale mode                                    |
+| Right-click   | Context menu (add primitives, lights, import) |
+| Left-click    | Select object                                 |
+| Middle-click  | Orbit / Pan (+ Shift)                         |
 
 ### License
 
@@ -142,18 +142,18 @@ Kairo — это легковесный браузерный 3D-редактор
 
 ### Технологии
 
-| Слой | Технология |
-|---|---|
-| Фреймворк | Vue 3 (Composition API, `<script setup>`) |
-| 3D-движок | Three.js |
-| Состояние | Pinia |
-| Хранилище | IndexedDB (Dexie) |
-| UI-компоненты | Element Plus |
-| Язык | TypeScript |
-| Сборка | Vite |
-| Тесты | Vitest + jsdom |
-| Линтинг | ESLint + oxlint |
-| Форматирование | Prettier |
+| Слой           | Технология                                |
+| -------------- | ----------------------------------------- |
+| Фреймворк      | Vue 3 (Composition API, `<script setup>`) |
+| 3D-движок      | Three.js                                  |
+| Состояние      | Pinia                                     |
+| Хранилище      | IndexedDB (Dexie)                         |
+| UI-компоненты  | Element Plus                              |
+| Язык           | TypeScript                                |
+| Сборка         | Vite                                      |
+| Тесты          | Vitest + jsdom                            |
+| Линтинг        | ESLint + oxlint                           |
+| Форматирование | Prettier                                  |
 
 ### Требования
 
@@ -209,18 +209,18 @@ src/
 
 ### Горячие клавиши
 
-| Клавиша | Действие |
-|---|---|
+| Клавиша       | Действие                                        |
+| ------------- | ----------------------------------------------- |
 | W / A / S / D | Полёт камеры (относительно направления взгляда) |
-| Пробел | Подъём |
-| Shift | Спуск |
-| Колесо мыши | Регулировка скорости камеры |
-| 1 | Режим перемещения |
-| 2 | Режим вращения |
-| 3 | Режим масштабирования |
-| ПКМ | Контекстное меню (примитивы, свет, импорт) |
-| ЛКМ | Выбор объекта |
-| СКМ | Орбита / Панорамирование (+ Shift) |
+| Пробел        | Подъём                                          |
+| Shift         | Спуск                                           |
+| Колесо мыши   | Регулировка скорости камеры                     |
+| 1             | Режим перемещения                               |
+| 2             | Режим вращения                                  |
+| 3             | Режим масштабирования                           |
+| ПКМ           | Контекстное меню (примитивы, свет, импорт)      |
+| ЛКМ           | Выбор объекта                                   |
+| СКМ           | Орбита / Панорамирование (+ Shift)              |
 
 ### Лицензия
 

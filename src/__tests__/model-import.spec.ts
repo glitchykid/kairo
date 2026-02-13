@@ -156,7 +156,9 @@ describe('model import service', () => {
 
   it('handles collada scenes with Three.js objects', async () => {
     const scene = new THREE.Group()
-    scene.add(new THREE.Mesh(new THREE.BoxGeometry(), new THREE.MeshBasicMaterial({ color: 0x123456 })))
+    scene.add(
+      new THREE.Mesh(new THREE.BoxGeometry(), new THREE.MeshBasicMaterial({ color: 0x123456 })),
+    )
 
     loaderMocks.dae.mockResolvedValueOnce({ scene })
     const result = await loadImportedModelObject(makeAsset('dae'))
@@ -165,7 +167,10 @@ describe('model import service', () => {
 
   it('wraps PLY geometry in mesh with default material', async () => {
     const geometry = new THREE.BufferGeometry()
-    geometry.setAttribute('position', new THREE.BufferAttribute(new Float32Array([0, 0, 0, 1, 0, 0, 0, 1, 0]), 3))
+    geometry.setAttribute(
+      'position',
+      new THREE.BufferAttribute(new Float32Array([0, 0, 0, 1, 0, 0, 0, 1, 0]), 3),
+    )
     loaderMocks.ply.mockResolvedValueOnce(geometry)
 
     const result = await loadImportedModelObject(makeAsset('ply'))

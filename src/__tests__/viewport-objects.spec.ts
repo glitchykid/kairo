@@ -21,7 +21,9 @@ const mockCtx = {
 
 beforeEach(() => {
   vi.restoreAllMocks()
-  vi.spyOn(HTMLCanvasElement.prototype, 'getContext').mockReturnValue(mockCtx as unknown as CanvasRenderingContext2D)
+  vi.spyOn(HTMLCanvasElement.prototype, 'getContext').mockReturnValue(
+    mockCtx as unknown as CanvasRenderingContext2D,
+  )
 })
 
 describe('viewport-objects', () => {
@@ -239,7 +241,8 @@ describe('viewport-objects', () => {
     })
 
     it('falls back to box for unknown type', async () => {
-      const { makeGeometryForPrimitive, makeBoxGeometry } = await import('@/features/viewport/viewport-objects')
+      const { makeGeometryForPrimitive, makeBoxGeometry } =
+        await import('@/features/viewport/viewport-objects')
       const unknown = makeGeometryForPrimitive('unknown' as any)
       const box = makeBoxGeometry()
       // Both should have same vertex count
@@ -253,7 +256,9 @@ describe('viewport-objects', () => {
     it('creates a sprite with the given light id as name', async () => {
       // Reset module to force new texture creation
       vi.resetModules()
-      vi.spyOn(HTMLCanvasElement.prototype, 'getContext').mockReturnValue(mockCtx as unknown as CanvasRenderingContext2D)
+      vi.spyOn(HTMLCanvasElement.prototype, 'getContext').mockReturnValue(
+        mockCtx as unknown as CanvasRenderingContext2D,
+      )
 
       const { makeLightBillboard } = await import('@/features/viewport/viewport-objects')
       const sprite = makeLightBillboard('light-123')
@@ -264,7 +269,9 @@ describe('viewport-objects', () => {
 
     it('has scale set to 0.8', async () => {
       vi.resetModules()
-      vi.spyOn(HTMLCanvasElement.prototype, 'getContext').mockReturnValue(mockCtx as unknown as CanvasRenderingContext2D)
+      vi.spyOn(HTMLCanvasElement.prototype, 'getContext').mockReturnValue(
+        mockCtx as unknown as CanvasRenderingContext2D,
+      )
 
       const { makeLightBillboard } = await import('@/features/viewport/viewport-objects')
       const sprite = makeLightBillboard('light-456')
@@ -275,7 +282,9 @@ describe('viewport-objects', () => {
 
     it('uses transparent sprite material', async () => {
       vi.resetModules()
-      vi.spyOn(HTMLCanvasElement.prototype, 'getContext').mockReturnValue(mockCtx as unknown as CanvasRenderingContext2D)
+      vi.spyOn(HTMLCanvasElement.prototype, 'getContext').mockReturnValue(
+        mockCtx as unknown as CanvasRenderingContext2D,
+      )
 
       const { makeLightBillboard } = await import('@/features/viewport/viewport-objects')
       const sprite = makeLightBillboard('light-789')

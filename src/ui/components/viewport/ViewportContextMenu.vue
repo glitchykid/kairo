@@ -27,11 +27,7 @@ const primitives: { type: PrimitiveType; labelKey: string }[] = [
 </script>
 
 <template>
-  <div
-    v-if="visible"
-    class="viewport__context-menu"
-    :style="{ left: `${x}px`, top: `${y}px` }"
-  >
+  <div v-if="visible" class="viewport__context-menu" :style="{ left: `${x}px`, top: `${y}px` }">
     <button
       v-for="prim in primitives"
       :key="prim.type"

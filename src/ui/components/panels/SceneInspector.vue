@@ -129,10 +129,15 @@ function handleRenameScene(event: Event): void {
           v-for="node in scene.nodes"
           :key="node.id"
           class="scene-inspector__item"
-          :class="{ 'scene-inspector__item--selected': props.selectedObjectId === node.id && props.selectedIsPrimitive }"
+          :class="{
+            'scene-inspector__item--selected':
+              props.selectedObjectId === node.id && props.selectedIsPrimitive,
+          }"
           @click="handleSelectNode(node.id)"
         >
-          <span class="scene-inspector__item-name">{{ t(`inspector.primitive.${node.primitive}`) }}</span>
+          <span class="scene-inspector__item-name">{{
+            t(`inspector.primitive.${node.primitive}`)
+          }}</span>
           <span class="scene-inspector__item-id">({{ node.id.slice(0, 8) }})</span>
           <button
             type="button"
@@ -140,7 +145,13 @@ function handleRenameScene(event: Event): void {
             :title="t('inspector.deletePrimitive')"
             @click.stop="handleDeleteNode(node.id)"
           >
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <svg
+              width="14"
+              height="14"
+              viewBox="0 0 14 14"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
               <path
                 d="M3.5 3.5L10.5 10.5M10.5 3.5L3.5 10.5"
                 stroke="currentColor"
@@ -161,7 +172,12 @@ function handleRenameScene(event: Event): void {
           v-for="asset in importedAssets"
           :key="asset.id"
           class="scene-inspector__item"
-          :class="{ 'scene-inspector__item--selected': props.selectedObjectId === asset.id && !props.selectedIsPrimitive && !props.selectedIsLight }"
+          :class="{
+            'scene-inspector__item--selected':
+              props.selectedObjectId === asset.id &&
+              !props.selectedIsPrimitive &&
+              !props.selectedIsLight,
+          }"
           @click="handleSelectModel(asset.id)"
         >
           <span class="scene-inspector__item-name">{{ asset.name }}</span>
@@ -172,7 +188,13 @@ function handleRenameScene(event: Event): void {
             :title="t('inspector.deleteModel')"
             @click.stop="handleDeleteModel(asset.id)"
           >
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <svg
+              width="14"
+              height="14"
+              viewBox="0 0 14 14"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
               <path
                 d="M3.5 3.5L10.5 10.5M10.5 3.5L3.5 10.5"
                 stroke="currentColor"
@@ -193,7 +215,10 @@ function handleRenameScene(event: Event): void {
           v-for="light in scene.lights"
           :key="light.id"
           class="scene-inspector__item"
-          :class="{ 'scene-inspector__item--selected': props.selectedObjectId === light.id && props.selectedIsLight }"
+          :class="{
+            'scene-inspector__item--selected':
+              props.selectedObjectId === light.id && props.selectedIsLight,
+          }"
           @click="handleSelectLight(light.id)"
         >
           <span class="scene-inspector__item-name">{{ t('inspector.light') }}</span>
@@ -204,8 +229,19 @@ function handleRenameScene(event: Event): void {
             :title="t('inspector.deleteLight')"
             @click.stop="handleDeleteLight(light.id)"
           >
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M3.5 3.5L10.5 10.5M10.5 3.5L3.5 10.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            <svg
+              width="14"
+              height="14"
+              viewBox="0 0 14 14"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M3.5 3.5L10.5 10.5M10.5 3.5L3.5 10.5"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+              />
             </svg>
           </button>
         </li>
@@ -217,8 +253,15 @@ function handleRenameScene(event: Event): void {
     <section class="scene-inspector__section scene-inspector__position">
       <h3 class="scene-inspector__section-title">{{ t('inspector.position') }}</h3>
       <div class="scene-inspector__position-fields">
-        <label v-for="axis in (['x', 'y', 'z'] as const)" :key="`pos-${axis}`" class="scene-inspector__position-field">
-          <span :class="['scene-inspector__position-label', `scene-inspector__position-label--${axis}`]">{{ axis.toUpperCase() }}</span>
+        <label
+          v-for="axis in ['x', 'y', 'z'] as const"
+          :key="`pos-${axis}`"
+          class="scene-inspector__position-field"
+        >
+          <span
+            :class="['scene-inspector__position-label', `scene-inspector__position-label--${axis}`]"
+            >{{ axis.toUpperCase() }}</span
+          >
           <input
             type="number"
             class="scene-inspector__position-input"
@@ -231,10 +274,22 @@ function handleRenameScene(event: Event): void {
       </div>
 
       <!-- Scale (primitives and imported models, not lights) -->
-      <h3 v-if="!selectedIsLight" class="scene-inspector__section-title scene-inspector__subsection-title">{{ t('inspector.scale') }}</h3>
+      <h3
+        v-if="!selectedIsLight"
+        class="scene-inspector__section-title scene-inspector__subsection-title"
+      >
+        {{ t('inspector.scale') }}
+      </h3>
       <div v-if="!selectedIsLight" class="scene-inspector__position-fields">
-        <label v-for="axis in (['x', 'y', 'z'] as const)" :key="`scl-${axis}`" class="scene-inspector__position-field">
-          <span :class="['scene-inspector__position-label', `scene-inspector__position-label--${axis}`]">{{ axis.toUpperCase() }}</span>
+        <label
+          v-for="axis in ['x', 'y', 'z'] as const"
+          :key="`scl-${axis}`"
+          class="scene-inspector__position-field"
+        >
+          <span
+            :class="['scene-inspector__position-label', `scene-inspector__position-label--${axis}`]"
+            >{{ axis.toUpperCase() }}</span
+          >
           <input
             type="number"
             class="scene-inspector__position-input"
@@ -247,10 +302,22 @@ function handleRenameScene(event: Event): void {
       </div>
 
       <!-- Rotation (primitives and imported models, not lights) -->
-      <h3 v-if="!selectedIsLight" class="scene-inspector__section-title scene-inspector__subsection-title">{{ t('inspector.rotation') }}</h3>
+      <h3
+        v-if="!selectedIsLight"
+        class="scene-inspector__section-title scene-inspector__subsection-title"
+      >
+        {{ t('inspector.rotation') }}
+      </h3>
       <div v-if="!selectedIsLight" class="scene-inspector__position-fields">
-        <label v-for="axis in (['x', 'y', 'z'] as const)" :key="`rot-${axis}`" class="scene-inspector__position-field">
-          <span :class="['scene-inspector__position-label', `scene-inspector__position-label--${axis}`]">{{ axis.toUpperCase() }}</span>
+        <label
+          v-for="axis in ['x', 'y', 'z'] as const"
+          :key="`rot-${axis}`"
+          class="scene-inspector__position-field"
+        >
+          <span
+            :class="['scene-inspector__position-label', `scene-inspector__position-label--${axis}`]"
+            >{{ axis.toUpperCase() }}</span
+          >
           <input
             type="number"
             class="scene-inspector__position-input"
@@ -262,7 +329,9 @@ function handleRenameScene(event: Event): void {
         </label>
       </div>
 
-      <p v-if="!hasSelection()" class="scene-inspector__position-hint">{{ t('inspector.noSelection') }}</p>
+      <p v-if="!hasSelection()" class="scene-inspector__position-hint">
+        {{ t('inspector.noSelection') }}
+      </p>
     </section>
   </aside>
 </template>

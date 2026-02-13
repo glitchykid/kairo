@@ -55,8 +55,10 @@ describe('viewport-geometry', () => {
     it('handles geometry with coincident vertices (len=0)', () => {
       const geom = new THREE.BufferGeometry()
       geom.setIndex(new THREE.BufferAttribute(new Uint16Array([0, 1, 2]), 1))
-      geom.setAttribute('position', new THREE.BufferAttribute(
-        new Float32Array([0, 0, 0, 0, 0, 0, 0, 0, 0]), 3))
+      geom.setAttribute(
+        'position',
+        new THREE.BufferAttribute(new Float32Array([0, 0, 0, 0, 0, 0, 0, 0, 0]), 3),
+      )
       geom.computeVertexNormals()
       const edges = new THREE.EdgesGeometry(geom)
       const result = offsetEdgeGeometry(edges)
@@ -65,6 +67,5 @@ describe('viewport-geometry', () => {
       edges.dispose()
       result.dispose()
     })
-
   })
 })

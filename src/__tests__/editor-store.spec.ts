@@ -106,10 +106,7 @@ describe('editor store', () => {
     const store = useEditorStore()
     await store.hydrate()
 
-    await store.importModelFiles([
-      new File(['x'], 'a.txt'),
-      new File(['x'], 'b.pdf'),
-    ])
+    await store.importModelFiles([new File(['x'], 'a.txt'), new File(['x'], 'b.pdf')])
     expect(store.importedAssets).toHaveLength(0)
   })
 })

@@ -14,9 +14,9 @@ export function offsetEdgeGeometry(geometry: THREE.BufferGeometry): THREE.Buffer
     cy = 0,
     cz = 0
   for (let i = 0; i < count; i++) {
-    cx += (pos[i * 3] ?? 0)
-    cy += (pos[i * 3 + 1] ?? 0)
-    cz += (pos[i * 3 + 2] ?? 0)
+    cx += pos[i * 3] ?? 0
+    cy += pos[i * 3 + 1] ?? 0
+    cz += pos[i * 3 + 2] ?? 0
   }
   cx /= count
   cy /= count

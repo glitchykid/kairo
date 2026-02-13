@@ -24,11 +24,17 @@ function contextLabel(context: 'viewport' | 'global'): string {
       {{ t('menu.hotkeys') }}
     </button>
 
-    <el-dropdown trigger="click" popper-class="editor-menu-bar__dropdown" @command="openSettingsPane">
+    <el-dropdown
+      trigger="click"
+      popper-class="editor-menu-bar__dropdown"
+      @command="openSettingsPane"
+    >
       <button class="editor-menu-bar__trigger" type="button">{{ t('menu.settings') }}</button>
       <template #dropdown>
         <el-dropdown-menu>
-          <el-dropdown-item command="user-interface">{{ t('menu.userInterface') }}</el-dropdown-item>
+          <el-dropdown-item command="user-interface">{{
+            t('menu.userInterface')
+          }}</el-dropdown-item>
         </el-dropdown-menu>
       </template>
     </el-dropdown>
@@ -51,7 +57,9 @@ function contextLabel(context: 'viewport' | 'global'): string {
       </thead>
       <tbody>
         <tr v-for="hotkey in HOTKEYS" :key="hotkey.id">
-          <td><code>{{ hotkey.keys }}</code></td>
+          <td>
+            <code>{{ hotkey.keys }}</code>
+          </td>
           <td>{{ contextLabel(hotkey.context) }}</td>
           <td>{{ t(hotkey.descriptionKey) }}</td>
         </tr>
